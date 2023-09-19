@@ -24,9 +24,5 @@ class UserJpaEntity(
     val name: String,
 
     @Column(nullable = false)
-    val email: String,
-
-    @ManyToMany
-    @JoinColumn(name = "board_id")
-    val boards: List<BoardJpaEntity>
+    val email: String
 )
