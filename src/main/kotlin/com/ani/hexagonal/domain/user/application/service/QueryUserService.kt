@@ -4,5 +4,5 @@ import com.ani.hexagonal.domain.user.application.model.User
 
 
 interface QueryUserService {
-    fun queryCurrentUser(email: String): User
+    fun queryCurrentUser(): User
 }
