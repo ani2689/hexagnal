@@ -1,7 +1,5 @@
 package com.ani.hexagonal.domain.board.application.facade
 
-import com.ani.hexagonal.domain.board.application.model.Board
-import com.ani.hexagonal.domain.board.application.model.Category
 import com.ani.hexagonal.domain.board.presentation.data.req.CategoryRequestData
 import com.ani.hexagonal.domain.board.presentation.data.req.CreateBoardRequestData
 import com.ani.hexagonal.domain.board.presentation.data.req.ModifyBoardRequestData

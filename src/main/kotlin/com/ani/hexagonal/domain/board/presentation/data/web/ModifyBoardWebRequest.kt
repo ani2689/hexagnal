@@ -9,11 +9,13 @@ data class ModifyBoardWebRequest (
     val title: String,
     @field:Size(min = 10)
     val content: String,
-    val category: List<String>
+    val category: List<CategoryRequestWebRequest>
 ){
     fun toData() = ModifyBoardRequestData(
         title,
         content,
-        category
+        category.map {
+            it.toData()
+        }
     )
 }
