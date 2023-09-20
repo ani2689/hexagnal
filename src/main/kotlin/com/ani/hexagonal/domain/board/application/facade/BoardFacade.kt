@@ -13,7 +13,7 @@ interface BoardFacade {
     fun queryBoardByCategory(categories: List<CategoryRequestData>) : List<BoardResponseData>
     fun queryBoardById(id: Long) : BoardDetailResponseData
     fun queryBoardByUUID(uuid: UUID) : List<BoardResponseData>
-    fun checkBoard(modifyBoardRequestData: ModifyBoardRequestData)
+    fun modifyBoard(modifyBoardRequestData: ModifyBoardRequestData)
     fun deleteBoardById(id: Long)
     fun deleteAllBoardByUUID(uuid: UUID)
 }
