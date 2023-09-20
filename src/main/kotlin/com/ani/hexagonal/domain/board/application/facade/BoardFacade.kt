@@ -15,5 +15,5 @@ interface BoardFacade {
     fun queryBoardByUUID(uuid: UUID) : List<BoardResponseData>
     fun checkBoard(modifyBoardRequestData: ModifyBoardRequestData)
     fun deleteBoardById(id: Long)
-    fun deleteAllBoardByUser(uuid: UUID)
+    fun deleteAllBoardByUUID(uuid: UUID)
 }

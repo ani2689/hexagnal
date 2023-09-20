@@ -11,7 +11,8 @@ data class ModifyBoardWebRequest (
     val content: String,
     val category: List<CategoryRequestWebRequest>
 ){
-    fun toData() = ModifyBoardRequestData(
+    fun toData(id: Long) = ModifyBoardRequestData(
+        id,
         title,
         content,
         category.map {
