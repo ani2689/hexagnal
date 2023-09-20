@@ -7,3 +7,8 @@ fun Category.toEntity(category: Category) = CategoryJpaEntity(
     category.id,
     category.name
 )
+
+fun CategoryJpaEntity.toDomain(categoryJpaEntity: CategoryJpaEntity) = Category(
+    categoryJpaEntity.id,
+    categoryJpaEntity.name
+)
