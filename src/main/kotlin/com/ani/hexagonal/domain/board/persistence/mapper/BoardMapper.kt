@@ -5,22 +5,22 @@ import com.ani.hexagonal.domain.board.persistence.entity.BoardJpaEntity
 import com.ani.hexagonal.domain.user.persistence.mapper.toDomain
 import com.ani.hexagonal.domain.user.persistence.mapper.toEntity
 
-fun Board.toEntity(board: Board) = BoardJpaEntity(
-    board.id,
-    board.title,
-    board.content,
-    board.category.map {
+fun Board.toEntity() = BoardJpaEntity(
+    this.id,
+    this.title,
+    this.content,
+    this.category.map {
        it.toEntity(it)
     },
-    board.writer.toEntity(board.writer)
+    this.writer.toEntity()
 )
 
-fun BoardJpaEntity.toDomain(boardJpaEntity: BoardJpaEntity) = Board(
-    boardJpaEntity.id,
-    boardJpaEntity.title,
-    boardJpaEntity.content,
-    boardJpaEntity.categories.map {
+fun BoardJpaEntity.toDomain() = Board(
+    this.id,
+    this.title,
+    this.content,
+    this.categories.map {
         it.toDomain(it)
     },
-    boardJpaEntity.writer.toDomain(boardJpaEntity.writer)
+    this.writer.toDomain()
 )
