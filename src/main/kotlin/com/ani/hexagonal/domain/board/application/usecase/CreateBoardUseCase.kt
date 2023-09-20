@@ -17,7 +17,7 @@ class CreateBoardUseCase (
     fun execute(board: CreateBoardRequestData){
         val currentUser = userService.queryCurrentUser()
         board.category.map {
-            categoryService.findByName(it)?:Category(0, it)
+            categoryService.findByName(it.name)?:Category(0, it.name)
                 .let { categoryEntity -> categoryService.save(categoryEntity) }
         }
         boardService.save(Board(
@@ -25,7 +25,7 @@ class CreateBoardUseCase (
             board.title,
             board.content,
             board.category.map {
-                categoryService.findByName(it)!!
+                categoryService.findByName(it.name)!!
             },
             currentUser
         ))
