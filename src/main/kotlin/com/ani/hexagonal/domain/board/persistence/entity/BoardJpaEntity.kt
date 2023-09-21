@@ -23,8 +23,8 @@ class BoardJpaEntity(
     val content: String,
 
     @ManyToMany
-    @JoinColumn(name = "categories_id")
-    val categories: List<CategoryJpaEntity>,
+    @JoinColumn(name = "category_id")
+    val category: List<CategoryJpaEntity>,
 
     @ManyToOne
     @JoinColumn(name = "user_id")
