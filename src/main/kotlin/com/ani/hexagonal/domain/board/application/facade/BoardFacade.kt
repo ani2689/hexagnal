@@ -10,7 +10,7 @@ import java.util.UUID
 interface BoardFacade {
     fun createBoard(createBoardRequestData: CreateBoardRequestData)
     fun queryAllBoard() : List<BoardResponseData>
-    fun queryBoardByCategory(categories: List<CategoryRequestData>) : List<BoardResponseData>
+    fun queryBoardByCategory(category: List<CategoryRequestData>) : List<BoardResponseData>
     fun queryBoardById(id: Long) : BoardDetailResponseData
     fun queryBoardByUUID(uuid: UUID) : List<BoardResponseData>
     fun modifyBoard(modifyBoardRequestData: ModifyBoardRequestData)
