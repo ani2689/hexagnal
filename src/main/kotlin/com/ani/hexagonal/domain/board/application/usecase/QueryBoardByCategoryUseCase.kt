@@ -4,9 +4,9 @@ import com.ani.hexagonal.domain.board.application.model.Board
 import com.ani.hexagonal.domain.board.application.model.Category
 import com.ani.hexagonal.domain.board.application.service.BoardService
 import com.ani.hexagonal.domain.board.presentation.data.req.CategoryRequestData
-import com.ani.hexagonal.global.annotation.usecase.UseCase
+import com.ani.hexagonal.global.annotation.usecase.ReadOnlyUseCase
 
-@UseCase
+@ReadOnlyUseCase
 class QueryBoardByCategoryUseCase (
     private val boardService: BoardService
 ){
