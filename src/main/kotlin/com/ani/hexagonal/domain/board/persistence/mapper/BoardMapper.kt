@@ -10,7 +10,7 @@ fun Board.toEntity() = BoardJpaEntity(
     this.title,
     this.content,
     this.category.map {
-       it.toEntity(it)
+       it.toEntity()
     },
     this.writer.toEntity()
 )
@@ -19,8 +19,8 @@ fun BoardJpaEntity.toDomain() = Board(
     this.id,
     this.title,
     this.content,
-    this.categories.map {
-        it.toDomain(it)
+    this.category.map{
+        it.toDomain()
     },
     this.writer.toDomain()
 )
