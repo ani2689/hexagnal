@@ -1,15 +1,7 @@
 package com.ani.hexagonal.domain.board.persistence.entity
 
 import com.ani.hexagonal.domain.user.persistence.entity.UserJpaEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
-import org.springframework.data.annotation.Id
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "board")
