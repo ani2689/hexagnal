@@ -1,3 +1,4 @@
+
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -24,7 +25,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation ("mysql:mysql-connector-java:8.0.29")
+    implementation("mysql:mysql-connector-java:8.0.29")
+    implementation("com.google.api-client:google-api-client:2.2.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
