@@ -1,14 +1,8 @@
 package com.ani.hexagonal.domain.user.persistence.entity
 
 import com.ani.hexagonal.domain.board.persistence.entity.BoardJpaEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import com.ani.hexagonal.domain.user.application.model.role.UserRole
+import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator
 import java.util.UUID
 
@@ -24,5 +18,10 @@ class UserJpaEntity(
     val name: String,
 
     @Column(nullable = false)
-    val email: String
+    val email: String,
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "roles", joinColumns = [JoinColumn(name = "user_id")])
+    var role: MutableList<UserRole> = mutableListOf()
 )
