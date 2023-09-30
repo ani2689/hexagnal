@@ -2,6 +2,7 @@ package com.ani.hexagonal.global.security
 import com.ani.hexagonal.global.config.FilterConfig
 import com.ani.hexagonal.global.security.spi.JwtParserPort
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 @EnableWebSecurity
+@Configuration
 class SecurityConfig (
     private val jwtParserPort: JwtParserPort
 ){
