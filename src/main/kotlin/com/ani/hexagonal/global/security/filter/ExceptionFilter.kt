@@ -2,7 +2,10 @@ package com.ani.hexagonal.global.security.filter
 
 import com.ani.hexagonal.global.error.ErrorCode
 import com.ani.hexagonal.global.error.ErrorResponseData
+import com.ani.hexagonal.global.error.basic.BoardException
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.jsonwebtoken.ExpiredJwtException
+import io.jsonwebtoken.JwtException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -15,7 +18,15 @@ class ExceptionFilter : OncePerRequestFilter() {
         response: HttpServletResponse,
         filterChain: FilterChain
     ){
-
+        runCatching {
+            filterChain.doFilter(request, response)
+        }.onFailure { e ->
+            when(e) {
+                is ExpiredJwtException -> exceptionToResponse(ErrorCode.EXPIRED_ACCESS_TOKEN, response)
+                is JwtException -> exceptionToResponse(ErrorCode.INVALID_TOKEN, response)
+                is BoardException -> exceptionToResponse(e.errorCode, response)
+            }
+        }
     }
 
     private fun exceptionToResponse(errorCode: ErrorCode, response: HttpServletResponse) {

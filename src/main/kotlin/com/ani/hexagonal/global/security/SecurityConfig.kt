@@ -16,16 +16,17 @@ class SecurityConfig (
 ){
 
     @Bean
-    protected fun filterChain(http: HttpSecurity): SecurityFilterChain  = http
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
+        http
             .cors { it.disable() }
             .csrf { it.disable() }
             .formLogin { it.disable() }
             .httpBasic { it.disable() }
-            .authorizeHttpRequests{
+            .authorizeHttpRequests {
                 it
-                    .requestMatchers(HttpMethod.GET,"/auth").permitAll()
-                    .requestMatchers(HttpMethod.GET,"/auth/login").permitAll()
-                    .requestMatchers(HttpMethod.DELETE,"/auth/logout").authenticated()
+                    .requestMatchers(HttpMethod.GET, "/auth").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/auth/login").permitAll()
+                    .requestMatchers(HttpMethod.DELETE, "/auth/logout").authenticated()
 
                     .requestMatchers(HttpMethod.POST, "/board").authenticated()
                     .requestMatchers(HttpMethod.GET, "/board").permitAll()
@@ -38,8 +39,12 @@ class SecurityConfig (
 
                     .anyRequest().authenticated()
             }
-            .apply(FilterConfig(jwtParserPort)).and()
-            .build()
+
+        http
+            .apply(FilterConfig(jwtParserPort))
+
+        return http.build()
+    }
 
     @Bean
     protected fun passwordEncoder() = BCryptPasswordEncoder()
