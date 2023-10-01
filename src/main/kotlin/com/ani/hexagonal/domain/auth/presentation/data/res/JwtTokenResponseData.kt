@@ -1,5 +1,6 @@
 package com.ani.hexagonal.domain.auth.presentation.data.res
 
+import com.ani.hexagonal.domain.auth.application.model.JwtToken
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.ZonedDateTime
 
@@ -12,12 +13,12 @@ data class JwtTokenResponseData (
     val responseExp: ZonedDateTime,
 ){
     companion object {
-        fun of(accessToken: String, responseToken: String, accessExp: ZonedDateTime, responseExp: ZonedDateTime) =
+        fun of(jwtToken: JwtToken) =
             JwtTokenResponseData(
-                accessToken = accessToken,
-                responseToken = responseToken,
-                accessExp = accessExp,
-                responseExp = responseExp
+                accessToken = jwtToken.accessToken,
+                responseToken = jwtToken.responseToken,
+                accessExp = jwtToken.accessExp,
+                responseExp = jwtToken.responseExp,
             )
     }
 }
