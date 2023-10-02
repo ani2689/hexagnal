@@ -9,5 +9,6 @@ class QueryGoogleServiceImpl(
     private val googlePort: GooglePort
 ) : QueryGoogleService{
     override fun queryGoogleLoginUrl() = googlePort.queryGoogleLoginUrl()
+    override fun queryGoogleToken(code: String) = googlePort.queryGoogleToken(code)
 
 }
