@@ -31,7 +31,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.2")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.2")
-    implementation("com.google.api-client:google-api-client:2.2.0")
+    implementation ("com.google.api-client:google-api-client:1.32.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
