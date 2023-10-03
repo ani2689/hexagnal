@@ -3,7 +3,6 @@ package com.ani.hexagonal.domain.auth.presentation.data.res
 import com.ani.hexagonal.domain.auth.application.model.JwtToken
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDateTime
-import java.time.ZonedDateTime
 
 data class JwtTokenResponseData (
     val accessToken: String,

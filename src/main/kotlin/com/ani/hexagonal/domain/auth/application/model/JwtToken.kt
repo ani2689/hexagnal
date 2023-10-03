@@ -2,7 +2,6 @@ package com.ani.hexagonal.domain.auth.application.model
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDateTime
-import java.time.ZonedDateTime
 
 class JwtToken (
     val accessToken: String,
