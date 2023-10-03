@@ -1,6 +1,6 @@
 package com.ani.hexagonal.domain.auth.application.model
 
-class GoogleUserInfo (
+class GoogleUser (
     val name: String,
     val email: String
 )
