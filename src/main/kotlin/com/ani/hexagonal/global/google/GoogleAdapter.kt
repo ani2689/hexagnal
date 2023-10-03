@@ -2,9 +2,9 @@ package com.ani.hexagonal.global.google
 
 import com.ani.hexagonal.domain.auth.application.model.GoogleLoginUrl
 import com.ani.hexagonal.domain.auth.application.model.GoogleToken
-import com.ani.hexagonal.domain.auth.application.model.GoogleUserInfo
+import com.ani.hexagonal.domain.auth.application.model.GoogleUser
 import com.ani.hexagonal.domain.auth.application.spi.GooglePort
-import com.ani.hexagonal.global.error.exception.InvalidCodeException
+import com.ani.hexagonal.global.error.exception.InvalidGoogleCodeException
 import com.fasterxml.jackson.databind.JsonNode
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
@@ -26,14 +26,28 @@ class GoogleAdapter(
             "&redirect_uri=${googleProperties.redirectUri}" +
             "&response_type=code" +
             "&scope=" +
-                " email" +
-                " profile"
+                " https://www.googleapis.com/auth/userinfo.profile" +
+                " https://www.googleapis.com/auth/userinfo.email"
     )
 
-    override fun queryGoogleUserInfo(accessToken: String): GoogleUserInfo {
-        TODO()
-    }
+    override fun queryGoogleUserByGoogleToken(token: GoogleToken): GoogleUser {
+        val googleReq = HttpHeaders()
 
+        googleReq.set("Authorization", "Bearer ${token.accessToken}")
+
+        val googleRes = HttpEntity(null ,googleReq)
+            .let { RestTemplate().exchange(
+                "https://www.googleapis.com/oauth2/v2/userinfo",
+                HttpMethod.GET,
+                it,
+                JsonNode::class.java
+            )}.body!!
+
+        return GoogleUser(
+            googleRes.get("name").asText(),
+            googleRes.get("email").asText()
+        )
+    }
     override fun queryGoogleToken(code: String): GoogleToken {
         try {
             val googleReq: MultiValueMap<String, String> = LinkedMultiValueMap()
@@ -59,7 +73,7 @@ class GoogleAdapter(
             )
         } catch (e: Exception) {
             when (e.message!!.split(" ")[0]) {
-                "400" -> throw InvalidCodeException()
+                "400" -> throw InvalidGoogleCodeException()
                 else -> throw e
             }
         }
