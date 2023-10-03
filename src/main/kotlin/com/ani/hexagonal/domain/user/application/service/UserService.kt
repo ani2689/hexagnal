@@ -4,5 +4,7 @@ import com.ani.hexagonal.global.annotation.service.DomainService
 
 @DomainService
 class UserService (
-    queryUserService: QueryUserService
-) : QueryUserService by queryUserService
+    queryUserService: QueryUserService,
+    commandUserService: CommandUserService
+) : QueryUserService by queryUserService,
+    CommandUserService by commandUserService
