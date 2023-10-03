@@ -5,4 +5,5 @@ import java.util.UUID
 
 interface QueryUserPort {
     fun findByUUID(uuid: UUID): User
+    fun findByEmail(email: String): User?
 }

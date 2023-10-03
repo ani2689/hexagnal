@@ -7,4 +7,5 @@ import java.util.UUID
 
 @Repository
 interface UserRepository : JpaRepository<UserJpaEntity, UUID> {
+    fun findByEmail(email: String): UserJpaEntity?
 }
