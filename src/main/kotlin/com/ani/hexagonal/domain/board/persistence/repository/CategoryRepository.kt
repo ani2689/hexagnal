@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CategoryRepository : JpaRepository<CategoryJpaEntity, Long> {
-    fun findByName(name: String): CategoryJpaEntity
+    fun findByName(name: String): CategoryJpaEntity?
 }

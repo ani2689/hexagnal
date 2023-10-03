@@ -15,5 +15,5 @@ class CategoryPersistenceAdapter(
         categoryRepository.save(category.toEntity()).toDomain()
 
     override fun findByName(name: String) =
-        categoryRepository.findByName(name).toDomain()
+        categoryRepository.findByName(name)?.toDomain()
 }
