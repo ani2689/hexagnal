@@ -25,6 +25,7 @@ class ExceptionFilter : OncePerRequestFilter() {
                 is ExpiredJwtException -> exceptionToResponse(ErrorCode.EXPIRED_ACCESS_TOKEN, response)
                 is JwtException -> exceptionToResponse(ErrorCode.INVALID_TOKEN, response)
                 is BoardException -> exceptionToResponse(e.errorCode, response)
+                else -> throw e
             }
         }
     }
