@@ -16,13 +16,13 @@ class GenerateJwtAdapter(
     private val refreshTokenPort: RefreshTokenPort
 ) : GenerateJwtPort {
     override fun generate(userId: UUID, userRole: List<UserRole>): JwtToken {
-        val accessTokoen = generateAccessToken(userId, userRole)
+        val accessToken = generateAccessToken(userId, userRole)
         val refreshToken = generateRefreshToken(userId, userRole)
         val accessExp = generateAccessExp()
         val refreshExp = generateRefreshExp()
         refreshTokenPort.save(RefreshToken(refreshToken, userId, jwtProperties.refreshExp))
         return JwtToken(
-            accessTokoen,
+            accessToken,
             refreshToken,
             accessExp,
             refreshExp
