@@ -18,14 +18,12 @@ class LoginUseCase (
     fun execute(code: String): JwtToken {
         val googleToken = googleService.queryGoogleToken(code)
         val googleUser = googleService.queryGoogleUserByGoogleToken(googleToken)
-
-        val user = userService.queryUserByEmail(googleUser.email)?: userService.save(User(
+        val user = userService.queryUserByEmail(googleUser.email) ?: userService.save(User(
             UUID.randomUUID(),
-            googleUser.email,
             googleUser.name,
+            googleUser.email,
             mutableListOf(UserRole.ROLE_MEMBER)
         ))
-
         return generateJwtPort.generate(user.id, user.role)
     }
 }

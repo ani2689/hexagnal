@@ -1,6 +1,5 @@
 package com.ani.hexagonal.domain.user.persistence.entity
 
-import com.ani.hexagonal.domain.board.persistence.entity.BoardJpaEntity
 import com.ani.hexagonal.domain.user.application.model.role.UserRole
 import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator
@@ -12,13 +11,13 @@ class UserJpaEntity(
     @Id @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(name = "user_id")
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
 
     @Column(length = 10, nullable = false)
-    val name: String,
+    val name: String = "",
 
     @Column(nullable = false)
-    val email: String,
+    val email: String = "",
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
