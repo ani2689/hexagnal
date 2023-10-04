@@ -6,19 +6,19 @@ import java.time.LocalDateTime
 
 data class JwtTokenResponseData (
     val accessToken: String,
-    val responseToken: String,
+    val refreshToken: String,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     val accessExp: LocalDateTime,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    val responseExp: LocalDateTime,
+    val refreshExp: LocalDateTime,
 ){
     companion object {
         fun of(jwtToken: JwtToken) =
             JwtTokenResponseData(
                 accessToken = jwtToken.accessToken,
-                responseToken = jwtToken.responseToken,
+                refreshToken = jwtToken.refreshToken,
                 accessExp = jwtToken.accessExp,
-                responseExp = jwtToken.responseExp,
+                refreshExp = jwtToken.refreshExp,
             )
     }
 }

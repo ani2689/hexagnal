@@ -5,9 +5,9 @@ import java.time.LocalDateTime
 
 class JwtToken (
     val accessToken: String,
-    val responseToken: String,
+    val refreshToken: String,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     val accessExp: LocalDateTime,
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    val responseExp: LocalDateTime,
+    val refreshExp: LocalDateTime,
 )
